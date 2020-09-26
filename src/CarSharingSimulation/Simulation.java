@@ -31,7 +31,6 @@ public class Simulation {
 //            System.out.println("At station " + i + " , there are " + a.totalPassengersAtStation() + " passengers and " + b.totalCarsAtStation() + " cars.");
 //            System.out.println();
 
-
         }
         System.out.println("The average amount of passengers at each station is : "  + String.format("%,.2f", (passengerSum / AMOUNT_OF_STATIONS)));
         System.out.println("The average amount of cars at each station is: " + String.format("%,.2f", (carSum / AMOUNT_OF_STATIONS)));
@@ -78,7 +77,7 @@ carSum = 0;
             for (Car d : carList){
                System.out.println("Car destination, passenger Destination : " + d.returnCarDestination());
                 for (Passenger e : d.returnPassengerList()){
-                    System.out.println(e.returnPassengerDestination() + "     ");
+                    System.out.print(e.returnPassengerDestination() + "     ");
                 }
             }
 
@@ -90,7 +89,7 @@ carSum = 0;
 
         }
 
-        System.out.println(stationObject.calculateRevenuePerMile());
+        System.out.println("The revenue per mile is :  " + stationObject.calculateRevenuePerMile());
 
 
     }

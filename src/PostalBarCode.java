@@ -1,10 +1,22 @@
 import java.util.*;
 
+/**
+ *
+ * @author Zhuo Guan & Carlo Navata
+ *	A Postal Bar Code that takes numbers, validates if it can be
+ *	a bar code then creates a bar code
+ */
+
 public class PostalBarCode {
     // FROM 0 - 9                    //  0          1       2       3          4           5       6       7         8       9
     private final String[] BarCodes = {"||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
     private boolean checkSumErrorFound = true;
 
+    /**
+     * Reads the the bar code and returns ZIP code of the read bar code
+     * @param barCode
+     * @return ZIP code
+     */
     public int getZipCode(String barCode){
         ArrayList<String> noFrameBars = new ArrayList();
         for (char a : barCode.toCharArray()){
@@ -47,7 +59,11 @@ public class PostalBarCode {
         errorChecker(zipCode,checkSum);
         return zipCode;
     }
-
+    /**
+     * Reads ZIP Code and returns a Bar Code
+     * @param zipCode
+     * @return Bar Code of lines and dots
+     */
     public String getBarCode(int zipCode){
         String barCode = "|";
         int number = 0;
@@ -78,7 +94,11 @@ public class PostalBarCode {
         return barCode;
 
     }
-
+    /**
+     * Validates the user input bar code
+     * @param zipCode
+     * @param checkSum
+     */
     public void errorChecker(int zipCode, int checkSum) {
 
         String stringZipCode = Integer.toString(zipCode);
@@ -93,6 +113,9 @@ public class PostalBarCode {
             this.checkSumErrorFound = false;
         }
     }
+    /**
+     * Validates the user input ZIP code
+     */
     public void showError(){
         if (this.checkSumErrorFound == false)
             System.out.println("Based on the checksum, the zipcode is valid");
@@ -100,3 +123,9 @@ public class PostalBarCode {
             System.out.println("The zipcode is invalid because of an incorrect checksum");
     }
 }
+/**
+ * EXAMPLE CODE:
+ *  The zip code is 92395
+ Based on the checksum, the zipcode is valid
+ ||:|:::::||::||::|::|:|:|:|::|:|
+ */
