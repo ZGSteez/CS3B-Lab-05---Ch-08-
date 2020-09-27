@@ -1,3 +1,13 @@
+/*
+ * Car main
+ * Assignment 5 - Programming Project 8.04
+ * Chapter 08
+ *
+ * @author Zhuo Guan, Carlo Navata
+ * Testing the Passenger, Station, and Car Classses
+ * Runs 1000 simulations to find average revenue per car per mile
+ *
+ */
 package CarSharingSimulation;
 
 import java.util.*;
