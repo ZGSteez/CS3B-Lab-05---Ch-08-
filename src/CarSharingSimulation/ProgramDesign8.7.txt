@@ -1,0 +1,48 @@
+Program Design 8.7
+Input:
+In detail indicate what the inputs to this program are?
+	String barCode - String of lines and dots to simulate bar codes
+	int zipCode - integers that simulate a ZIP code
+	
+How do you validate the input
+	The input is validated through the errorChecker method
+Pseudocode: Briefly explain how this section will look like – Each module should have its own section.
+	errorChecker()
+	{
+		Check if multiple of 10
+	}
+Processing
+What is this program calculating?
+	This program is calculating user inputs of either zip code or bar codes and converting them to bar codes and zip codes respectively. 
+Can we divide the calculations to the smaller “modules”
+	Yes, the program is separated into the two main methods of conversion.
+Pseudocode: Briefly explain how this section will look like – Each module should have its own section.
+public int getZipCode(String barCode)
+{
+	convert barcode into zip code
+}
+	public String getBarCode(int zipCode)
+{
+		convert zip code into barcode
+	]
+
+Output
+What will this program display to the users?
+This program will display either a corresponding bar code with their zip code input or this program will display a corresponding zip code to their bar code.
+What kind of formatting this output will use (Currency with $ …)?
+This formatting the output will use strings of vertical lines and dots to represent a bar code and the zip code is normal integers.
+Pseudocode: Briefly explain how this section will look like
+		public static void main(String[] args)
+		{
+			print getzipcode(“|:||:::|”);
+			print getBarCode(91102);		
+}
+Library
+What Libraries do you need for this program?
+	
+Initialization and constant variables
+What variables need to be initialized?
+String[] BarCodes - array of strings, where each string represents a section of a bar code
+	checkSumErrorFound - initialized to true, and changed if error is found
+What variables need to be defined as constant
+	String[] BarCodes - array of strings this needs to be constant since methods should just refer to this and it should not be changed
