@@ -1,3 +1,14 @@
+/*
+ * Table main
+ * Assignment 5 - Programming Project 8.04
+ * Chapter 08
+ *
+ * @author Zhuo Guan, Carlo Navata
+ * Testing the PostalBarCode class
+ *  A Postal Bar Code that takes numbers, validates if it can be
+ *	a bar code then creates a bar code
+ */
+
 public class PostalBarCodeTest {
     public static void main(String[] args) {
         //creates an object newTrial of the class PostalBarCode

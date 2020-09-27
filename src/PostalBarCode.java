@@ -1,11 +1,16 @@
-import java.util.*;
-
-/**
+/*
+ * Table main
+ * Assignment 5 - Programming Project 8.04
+ * Chapter 08
  *
- * @author Zhuo Guan & Carlo Navata
- *	A Postal Bar Code that takes numbers, validates if it can be
+ * @author Zhuo Guan, Carlo Navata
+ * Implementing the PostalBarCode class
+ *  A Postal Bar Code that takes numbers, validates if it can be
  *	a bar code then creates a bar code
  */
+
+import java.util.*;
+
 
 public class PostalBarCode {
     // FROM 0 - 9                    //  0          1       2       3          4           5       6       7         8       9

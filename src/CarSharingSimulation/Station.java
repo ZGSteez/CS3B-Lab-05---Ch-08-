@@ -1,3 +1,15 @@
+/*
+ * Car main
+ * Assignment 5 - Programming Project 8.04
+ * Chapter 08
+ *
+ * @author Zhuo Guan, Carlo Navata
+ * Implementing the Station class
+ *  A Station class that has a member variable of an ArrayList of Stations. The station is constructed with either the default constructor or
+ * a construction with parameters of Passenger and Car.
+ *
+ */
+
 package CarSharingSimulation;
 
 import java.util.*;
@@ -10,21 +22,32 @@ public class Station {
     private final double PAY_PER_MILE = 7.00;
     private double totalRevenue = 0;
     private double milesDriven = 0;
+    private final int MINIMUM_PASSENGERS_AT_STATION = 25;
+    private final int MAXIMUM_PASSENGERS_AT_STATION_RANGE = 25;
+    private final int MINIMUM_CARS_AT_STATION = 5;
+    private final int MAXIMUM_CARS_AT_STATION_RANGE = 5;
     private Passenger allPassengersAtStation;
     private Car allCarsAtStation;
 
+    /**
+     *
+     * @param passengerObject - passenger object containing ArrayList of Passengers
+     * @param carObject - Car object containing Arraylist of Cars
+     */
     public Station(Passenger passengerObject, Car carObject) {
         this.allPassengersAtStation = passengerObject;
         this.allCarsAtStation = carObject;
     }
 
+    /**
+     * Default constructor
+     */
     public Station() {
     }
 
     public void generateStations() {
         Random random = new Random();
-        int MINIMUM_PASSENGERS_AT_STATION = 25;
-        int MAXIMUM_PASSENGERS_AT_STATION_RANGE = 25;
+
         int randomAmountOfPassengers = random.nextInt(MAXIMUM_PASSENGERS_AT_STATION_RANGE) + MINIMUM_PASSENGERS_AT_STATION;
         Passenger allPassengers = new Passenger();
 
@@ -34,8 +57,6 @@ public class Station {
             allPassengers.add(aPassenger);
         }
 
-        int MINIMUM_CARS_AT_STATION = 5;
-        int MAXIMUM_CARS_AT_STATION_RANGE = 5;
         int randomAmountOfCars = random.nextInt(MAXIMUM_CARS_AT_STATION_RANGE) + MINIMUM_CARS_AT_STATION;
         Car allCars = new Car();
 
@@ -47,10 +68,18 @@ public class Station {
         this.thirtyStations.add(new Station(allPassengers, allCars));
     }
 
+    /**
+     * Returns arraylist of station
+     * @return - returns an arrayList of type Station
+     */
     public ArrayList<Station> returnStationArrayList() {
         return this.thirtyStations;
     }
 
+    /**
+     * Adds first 3 passengers at starting station to Car Object and removes any errors it finds from the
+     * automatic generation of Station Objects with parameters passenger and car
+     */
     public void pickUpFirstPassengers() {          // mutator
         for (int currentStation = 0; currentStation < AMOUNT_OF_STATIONS; currentStation++) {            // i = current station
             Station station = this.thirtyStations.get(currentStation);
@@ -69,7 +98,7 @@ public class Station {
 
                     if (carDestination > currentStation) { // currentStation < destination
                         if (carDestination >= passengerDestination && passengerDestination > currentStation) {
-                            if (currentCar.passengersInCar() == 3){
+                            if (currentCar.passengersInCar() == 3) {
                                 break;
                             }
 
@@ -85,7 +114,7 @@ public class Station {
 
                     } else if (carDestination < currentStation) {  // currentStation > destination
                         if (carDestination <= passengerDestination && passengerDestination < currentStation) {
-                            if (currentCar.passengersInCar() == 3){
+                            if (currentCar.passengersInCar() == 3) {
                                 break;
                             }
                             currentCar.addPassenger(currentPassenger);      // adds passenger to car
@@ -110,14 +139,26 @@ public class Station {
         }
     }
 
+    /**
+     * Returns passenger object contained in station object
+     * @return - returns object of type passenger
+     */
     public Passenger returnPassenger() {
         return this.allPassengersAtStation;
     }
 
+    /**
+     * Returns car object contained in station object
+     * @return - returns object of type car
+     */
     public Car returnCar() {
         return this.allCarsAtStation;
     }
 
+    /**
+     * Returns total cars at all stations
+     * @return - returns an int of the sum of all cars at station
+     */
     public int returnTotalCarsAtAllStations() {
         int totalCars = 0;
         for (Station iterator : this.thirtyStations) {
@@ -128,26 +169,29 @@ public class Station {
         return totalCars;
     }
 
+    /**
+     * Calculates the revenue for each car and for all car objects at all stations and adds new passengers if possible
+     * @return - double of the average revenue per mile for all cars at all stations
+     */
+    public double calculateRevenuePerMile() {
+        for (int currentStation = 0; currentStation < AMOUNT_OF_STATIONS; currentStation++) {
+            Station station = this.thirtyStations.get(currentStation);
 
-    public double calculateRevenuePerMile(){
-        for (int currentStation = 0; currentStation < AMOUNT_OF_STATIONS;currentStation++){
-               Station station = this.thirtyStations.get(currentStation);
+            Car carObject = station.returnCar();
+            Passenger passengerObject = station.returnPassenger();
 
-               Car carObject = station.returnCar();
-               Passenger passengerObject = station.returnPassenger();
+            ArrayList<Car> carList = carObject.returnAllCars();
+            ArrayList<Passenger> passengerList = passengerObject.returnAllPassengers();
 
-               ArrayList<Car> carList = carObject.returnAllCars();
-               ArrayList<Passenger> passengerList = passengerObject.returnAllPassengers();
-
-               for (int currentCar = 0;currentCar < carList.size();currentCar++){
+            for (int currentCar = 0; currentCar < carList.size(); currentCar++) {
                 Car car = carList.get(currentCar);
                 car.sortFromLeastToGreatest();
 
-                while (car.passengersInCar() != 0){
+                while (car.passengersInCar() != 0) {
 
                     ArrayList<Passenger> passenger = car.returnPassengerList();
 
-                    for (int j = 0 ; j < car.returnPassengerList().size();j++){
+                    for (int j = 0; j < car.returnPassengerList().size(); j++) {
                         Passenger aPassenger = passenger.get(j);
                         this.totalRevenue += (Math.abs(aPassenger.returnPassengerDestination() - currentStation) * PAY_PER_MILE);
 
@@ -155,39 +199,32 @@ public class Station {
                         car.removePassenger(aPassenger);
 
 
-                        if (car.returnCarDestination() > currentStation){
+                        if (car.returnCarDestination() > currentStation) {
+
+                        } else if (car.returnCarDestination() < currentStation) {
 
                         }
 
-                        else if (car.returnCarDestination() < currentStation){
 
-                        }
-
-
-                        carList.set(currentCar,car);
+                        carList.set(currentCar, car);
 
                         Car iterator = new Car();
                         iterator.updateAllCars(carList);
-                        this.thirtyStations.set(currentStation,new Station(passengerObject,carObject));
+                        this.thirtyStations.set(currentStation, new Station(passengerObject, carObject));
 
                     }
 
 
                 }
 
-                   this.milesDriven += (Math.abs(car.returnCarDestination() - currentStation));
+                this.milesDriven += (Math.abs(car.returnCarDestination() - currentStation));
 
-               }
-
+            }
 
 
         }
         return this.totalRevenue / this.milesDriven;
     }
-
-
-
-
 
 
 }

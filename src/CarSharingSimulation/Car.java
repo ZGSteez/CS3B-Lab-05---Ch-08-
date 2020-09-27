@@ -1,67 +1,133 @@
+/*
+ * Car main
+ * Assignment 5 - Programming Project 8.04
+ * Chapter 08
+ *
+ * @author Zhuo Guan, Carlo Navata
+ * Implementing the Car class
+ *  A Car class that has member variables of destination of Car and ArrayList of passengers or an ArrayList of Cars
+ *
+ */
+
 package CarSharingSimulation;
+
 import java.util.*;
 
 
 public class Car {
-    private final  int AMOUNT_OF_STATIONS = 30;
-    private ArrayList <Car> allCars = new ArrayList<>();
+    private final int AMOUNT_OF_STATIONS = 30;
+    private ArrayList<Car> allCars = new ArrayList<>();
     private int carDestination;
     private int currentStation;
     private ArrayList<Passenger> passengers = new ArrayList();
 
-    public void getCarDestination(){
+    /**
+     * generates a destination station for Car object
+     */
+    public void getCarDestination() {
         Random random = new Random();
         int station = random.nextInt(AMOUNT_OF_STATIONS);
         this.carDestination = station;
     }
 
-    public int returnCarDestination(){
+    /**
+     * Returns destination station of car
+     *
+     * @return - returns an int containing the cars' destination station
+     */
+    public int returnCarDestination() {
         return this.carDestination;
     }
 
-    public ArrayList<Car> returnAllCars(){
+    /**
+     * Returns arraylist of cars
+     *
+     * @return - returns how arraylist of Cars or all the cars at a particular station
+     */
+    public ArrayList<Car> returnAllCars() {
         return this.allCars;
     }
 
-    public void add(Car aCar){
+    /**
+     * Adds new car object to arraylist of cars
+     *
+     * @param aCar - car object with particular station and particular amount of passengers
+     */
+    public void add(Car aCar) {
         allCars.add(aCar);
     }
 
-    public int totalCarsAtStation(){
+    /**
+     * Returns amount of cars at station
+     *
+     * @return - returns car arrayList size
+     */
+    public int totalCarsAtStation() {
         return this.allCars.size();
     }
 
-    public void addPassenger(Passenger aPassenger){
+    /**
+     * Adds passenger to car object
+     *
+     * @param aPassenger - passenger with particular destination
+     */
+    public void addPassenger(Passenger aPassenger) {
         this.passengers.add(aPassenger);
     }
 
-    public void removePassenger(Passenger aPassenger){
+    /**
+     * Removes passenger from car object
+     *
+     * @param aPassenger - passenger with particular destination
+     */
+    public void removePassenger(Passenger aPassenger) {
         this.passengers.remove(aPassenger);
     }
 
-    public int passengersInCar(){
+    /**
+     * Returns how many passengers are in car
+     *
+     * @return - returns an int of passenger ArrayList size or how many passengers are in this particular car
+     */
+    public int passengersInCar() {
         return this.passengers.size();
     }
 
-    public void updateAllCars(ArrayList<Car> updatedAllCars){
+    /**
+     * Updates arrayList of cars
+     *
+     * @param updatedAllCars - updated arraylist of cars
+     */
+    public void updateAllCars(ArrayList<Car> updatedAllCars) {
         this.allCars = updatedAllCars;
 
     }
 
-    public ArrayList<Passenger> returnPassengerList(){
+    /**
+     * Returns arrayList of passengers or all the passenger objects in car class
+     *
+     * @return - ArrayList of type passenger
+     */
+    public ArrayList<Passenger> returnPassengerList() {
         return this.passengers;
     }
 
-    public void sortFromLeastToGreatest(){
-       this.passengers.sort(Comparator.comparingInt(Passenger::returnPassengerDestination));
+    /**
+     * Sorts ArrayList of passenger from least to greatest
+     */
+    public void sortFromLeastToGreatest() {
+        this.passengers.sort(Comparator.comparingInt(Passenger::returnPassengerDestination));
     }
 
-    public void sortGreatestLeast(){
+    /**
+     * Sorts ArrayList of passenger from greatest to least
+     */
+    public void sortGreatestLeast() {
         this.passengers.sort(Comparator.comparingInt(Passenger::returnPassengerDestination));
 
         ArrayList<Passenger> reversedList = new ArrayList();
 
-        for (int i = this.passengers.size() - 1; i >= 0;i--){
+        for (int i = this.passengers.size() - 1; i >= 0; i--) {
             reversedList.add(this.passengers.get(i));
         }
 

@@ -1,4 +1,16 @@
+/*
+ * Passenger main
+ * Assignment 5 - Programming Project 8.04
+ * Chapter 08
+ *
+ * @author Zhuo Guan, Carlo Navata
+ * Implementing the Passenger class
+ *  A Passenger class that has member variable with certain destination and or ArrayList of passengers
+ *
+ */
+
 package CarSharingSimulation;
+
 import java.util.*;
 import java.util.Random;
 
@@ -7,36 +19,57 @@ public class Passenger {
     private ArrayList<Passenger> allPassengers = new ArrayList<>();
     private int passengerDestination;
 
-
-    public void getPassengerDestination(){
+    /**
+     * fills private variable passenger station with random value between 0 and 30
+     */
+    public void getPassengerDestination() {
         Random random = new Random();
         int station = random.nextInt(AMOUNT_OF_STATIONS);
         this.passengerDestination = station;
     }
 
-    public int returnPassengerDestination(){
+    /**
+     * @return - Returns value of passsenger destination station
+     */
+    public int returnPassengerDestination() {
         return this.passengerDestination;
     }
 
-    public ArrayList<Passenger> returnAllPassengers(){
+    /**
+     * @return - returns arrayList of passengers at particular station
+     */
+    public ArrayList<Passenger> returnAllPassengers() {
         return this.allPassengers;
     }
 
-    public void add(Passenger aPassenger){
+    /**
+     * Adds passenger object to passenger Arraylist
+     *
+     * @param aPassenger - passenger with only destination station initialized
+     */
+    public void add(Passenger aPassenger) {
         allPassengers.add(aPassenger);
     }
 
-    public int totalPassengersAtStation(){
+    /**
+     * Returns total amount of passengers at station
+     *
+     * @return - returns how many passengers are at station
+     */
+    public int totalPassengersAtStation() {
         return this.allPassengers.size();
 
     }
-    public void updateAllPassengers(ArrayList<Passenger> updateAllPassengers){
+
+    /**
+     * Updates arrayList of passengers
+     *
+     * @param updateAllPassengers - new updated arrayList of passengers
+     */
+    public void updateAllPassengers(ArrayList<Passenger> updateAllPassengers) {
         this.allPassengers = updateAllPassengers;
 
     }
-
-
-
 
 
 }
